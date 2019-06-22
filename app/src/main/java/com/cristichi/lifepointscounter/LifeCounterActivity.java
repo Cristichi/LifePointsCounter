@@ -2,6 +2,7 @@ package com.cristichi.lifepointscounter;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +25,7 @@ public class LifeCounterActivity extends AppCompatActivity {
     private ProgressBar pbPlayer1;
     private ProgressBar pbPlayer2;
 
+    @SuppressWarnings("All")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
