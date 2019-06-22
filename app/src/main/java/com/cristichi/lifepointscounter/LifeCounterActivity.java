@@ -5,22 +5,24 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class LifeCounterActivity extends AppCompatActivity {
 
-    TextView tv1Player1;
-    TextView tv2Player1;
-    TextView tv1Player2;
-    TextView tv2Player2;
-    TextView tvLP1;
-    TextView tvLP2;
-    ProgressBar pbPlayer1;
-    ProgressBar pbPlayer2;
+    private TextView tv1Player1;
+    private TextView tv2Player1;
+    private TextView tv1Player2;
+    private TextView tv2Player2;
+    private TextView tvLP1;
+    private TextView tvLP2;
+    private ProgressBar pbPlayer1;
+    private ProgressBar pbPlayer2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +57,6 @@ public class LifeCounterActivity extends AppCompatActivity {
             pbPlayer2.setMax(intLP);
             pbPlayer1.setProgress(intLP);
             pbPlayer2.setProgress(intLP);
-
-
         }catch (Exception e){
             Log.e("CRISTICHIEX", "ERROR: "+e.toString());
             Log.e("CRISTICHIEX", "ERROR: "+e.toString());
@@ -64,6 +64,34 @@ public class LifeCounterActivity extends AppCompatActivity {
             e.printStackTrace();
             finish();
         }
+    }
+
+    protected void addLP1(int adding){
+        int lp = pbPlayer1.getProgress()+adding;
+        pbPlayer1.setProgress(lp);
+        tvLP1.setText(String.valueOf(lp));
+    }
+
+    protected void addLP2(int adding){
+        int lp = pbPlayer2.getProgress()+adding;
+        pbPlayer2.setProgress(lp);
+        tvLP2.setText(String.valueOf(lp));
+    }
+
+    protected void subLP1(int substracting){
+        int lp = pbPlayer1.getProgress()-substracting;
+        if (lp<0)
+            lp=0;
+        pbPlayer1.setProgress(lp);
+        tvLP1.setText(String.valueOf(lp));
+    }
+
+    protected void subLP2(int substracting){
+        int lp = pbPlayer2.getProgress()-substracting;
+        if (lp<0)
+            lp=0;
+        pbPlayer2.setProgress(lp);
+        tvLP2.setText(String.valueOf(lp));
     }
 
     boolean doubleBackToExitPressedOnce = false;
