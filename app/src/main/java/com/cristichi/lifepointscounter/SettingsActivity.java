@@ -35,7 +35,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         sbSound.setProgress((int)(Settings.current.soundVolume*10));
         sbMusic.setProgress((int)(Settings.current.musicVolume*10));
-        etLP.setHint(Settings.current.lp);
+        etLP.setHint(String.valueOf(Settings.current.lp));
         etPlayer1.setHint(Settings.current.player1);
         etPlayer2.setHint(Settings.current.player2);
     }

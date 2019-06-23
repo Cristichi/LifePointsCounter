@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
+        etLP.setHint(String.valueOf(Settings.current.lp));
         if (!Settings.current.player1.isEmpty())
             etName1.setHint(Settings.current.player1);
         if (!Settings.current.player2.isEmpty())

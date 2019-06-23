@@ -29,10 +29,6 @@ public class Settings implements Parcelable, Serializable {
         List<Integer> l2 = new ArrayList<>();
         List<Integer> l3 = new ArrayList<>();
         List<Integer> l4 = new ArrayList<>();
-        buttons.add(l1);
-        buttons.add(l2);
-        buttons.add(l3);
-        buttons.add(l4);
 
         l1.add(50);
         l1.add(100);
@@ -45,6 +41,11 @@ public class Settings implements Parcelable, Serializable {
 
         l4.add(-500);
         l4.add(-1000);
+
+        buttons.add(l3);
+        buttons.add(l4);
+        buttons.add(l1);
+        buttons.add(l2);
 
         soundVolume = 0.5f;
         musicVolume = 0.5f;
