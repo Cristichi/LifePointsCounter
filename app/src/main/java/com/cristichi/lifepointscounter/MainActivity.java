@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity
         etLP = findViewById(R.id.etLP);
         etName1 = findViewById(R.id.etPlayer1Name);
         etName2 = findViewById(R.id.etPlayer2Name);
+
         if (Settings.current.player1.isEmpty()){
             Settings.current.player1 = etName1.getHint().toString();
         }if (Settings.current.player2.isEmpty()){

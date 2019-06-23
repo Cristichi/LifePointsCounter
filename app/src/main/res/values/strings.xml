@@ -24,6 +24,7 @@
     <string name="main_player1_default">Player 1</string>
     <string name="main_player2_label">Player 2\'s Name</string>
     <string name="main_player2_default">Player 2</string>
+    <string name="main_error_LP">LPs are too high!</string>
 
     <string name="counter_player1_default">Player 1</string>
     <string name="counter_player2_default">Player 2</string>

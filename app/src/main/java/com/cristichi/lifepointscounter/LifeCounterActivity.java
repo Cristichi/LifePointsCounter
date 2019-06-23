@@ -3,6 +3,7 @@ package com.cristichi.lifepointscounter;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Parcel;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -52,7 +53,13 @@ public class LifeCounterActivity extends AppCompatActivity {
         try{
             Bundle extras = getIntent().getExtras();
             String strLP = extras.getString("lp");
-            int intLP = Integer.parseInt(strLP);
+            int intLP = -1;
+            try{
+                intLP = Integer.parseInt(strLP);
+            }catch (NumberFormatException e){
+                Toast.makeText(this, R.string.main_error_LP, Toast.LENGTH_SHORT).show();
+                throw e;
+            }
             String player1 = extras.getString("Player1");
             String player2 = extras.getString("Player2");
 

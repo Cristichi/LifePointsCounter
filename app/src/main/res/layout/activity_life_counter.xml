@@ -16,10 +16,9 @@
         <ProgressBar
             android:id="@+id/progressBarPlayer2"
             style="@style/Widget.ProgressBar.Player2"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:indeterminate="false"
             android:max="8000"
@@ -27,9 +26,26 @@
             android:progressTint="@color/colorPlayer2"
             android:rotation="180"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toEndOf="@+id/tvLP2"
+            app:layout_constraintStart_toStartOf="@+id/tvLP2"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
+
+        <com.cristichi.lifepointscounter.components.VerticalTextView
+            android:id="@+id/tvLP2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center|top"
+            android:text="8000"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/colorTextPlayer2"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -69,20 +85,6 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvLP2"
-            android:layout_width="53dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="center"
-            android:rotation="90"
-            android:textColor="@color/colorTextPlayer2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/progressBarPlayer2"
-            app:layout_constraintStart_toStartOf="@+id/progressBarPlayer2"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <LinearLayout
             android:id="@+id/llPlayer2"
             android:layout_width="wrap_content"
@@ -104,6 +106,41 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1">
+
+        <ProgressBar
+            android:id="@+id/progressBarPlayer1"
+            style="@style/Widget.ProgressBar.Player2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:indeterminate="false"
+            android:max="8000"
+            android:progress="2000"
+            android:progressTint="@color/colorPlayer1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tvLP1"
+            app:layout_constraintStart_toStartOf="@+id/tvLP1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.cristichi.lifepointscounter.components.VerticalTextView
+            android:id="@+id/tvLP1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center|bottom"
+            android:text="Ejemplo0000000000000000000000000000000000"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/colorTextPlayer1"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <LinearLayout
             android:id="@+id/linearLayout3"
@@ -142,37 +179,6 @@
                 android:textColor="@color/backgroundTextColor"
                 android:textStyle="bold" />
         </LinearLayout>
-
-        <ProgressBar
-            android:id="@+id/progressBarPlayer1"
-            style="@style/Widget.ProgressBar.Player2"
-            android:layout_width="48dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:indeterminate="false"
-            android:max="8000"
-            android:progress="2000"
-            android:progressTint="@color/colorPlayer1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout3"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <TextView
-            android:id="@+id/tvLP1"
-            android:layout_width="53dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="center"
-            android:rotation="270"
-            android:textColor="@color/colorTextPlayer1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/progressBarPlayer1"
-            app:layout_constraintStart_toStartOf="@+id/progressBarPlayer1"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/llPlayer1"

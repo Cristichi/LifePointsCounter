@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Settings implements Parcelable, Serializable {
-    private static final int VERSION = 3;
+    private static final int VERSION = 1;
 
     public static final String FILE = "settings.bin";
 
