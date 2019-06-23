@@ -51,6 +51,7 @@
                 android:gravity="top"
                 android:text="@string/counter_player2_default"
                 android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/backgroundTextColor"
                 android:textStyle="bold" />
 
@@ -62,6 +63,7 @@
                 android:gravity="bottom"
                 android:text="@string/counter_player2_default"
                 android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/backgroundTextColor"
                 android:textStyle="bold" />
 
@@ -124,6 +126,7 @@
                 android:gravity="bottom"
                 android:text="@string/counter_player1_default"
                 android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/backgroundTextColor"
                 android:textStyle="bold" />
 
@@ -135,6 +138,7 @@
                 android:gravity="top"
                 android:text="@string/counter_player1_default"
                 android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/backgroundTextColor"
                 android:textStyle="bold" />
         </LinearLayout>
