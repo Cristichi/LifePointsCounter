@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,6 +15,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.cristichi.lifepointscounter.obj.Settings;
+
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -28,6 +35,21 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        File dir = getFilesDir();
+        File file = new File(dir, Settings.FILE);
+
+        if (file.exists())
+            try{
+                FileInputStream fis = new FileInputStream(file);
+                DataInputStream dis = new DataInputStream(fis);
+                if (!Settings.current.read(dis)){
+                    Toast.makeText(this, R.string.settings_not_saved, Toast.LENGTH_SHORT).show();
+                }
+                dis.close();
+            }catch (IOException e){
+                Toast.makeText(this, R.string.settings_not_saved, Toast.LENGTH_SHORT).show();
+            }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -42,6 +64,11 @@ public class MainActivity extends AppCompatActivity
         etLP = findViewById(R.id.etLP);
         etName1 = findViewById(R.id.etPlayer1Name);
         etName2 = findViewById(R.id.etPlayer2Name);
+        if (Settings.current.player1.isEmpty()){
+            Settings.current.player1 = etName1.getHint().toString();
+        }if (Settings.current.player2.isEmpty()){
+            Settings.current.player2 = etName2.getHint().toString();
+        }
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -62,12 +89,21 @@ public class MainActivity extends AppCompatActivity
                 name2 = (name2.isEmpty()?etName2.getHint().toString(): name2);
 
                 Intent intent = new Intent(MainActivity.this, LifeCounterActivity.class);
-                intent.putExtra("LP", lp);
+                intent.putExtra("lp", lp);
                 intent.putExtra("Player1", name1.trim());
                 intent.putExtra("Player2", name2.trim());
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (!Settings.current.player1.isEmpty())
+            etName1.setHint(Settings.current.player1);
+        if (!Settings.current.player2.isEmpty())
+            etName2.setHint(Settings.current.player2);
     }
 
     @Override
@@ -111,6 +147,9 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_edit) {
 
+        } else if (id == R.id.nav_settings) {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_coin) {
 
         }
@@ -118,5 +157,10 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

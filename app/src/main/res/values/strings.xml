@@ -27,4 +27,14 @@
 
     <string name="counter_player1_default">Player 1</string>
     <string name="counter_player2_default">Player 2</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_lp">Default Starting LPs</string>
+    <string name="settings_player1">Default Player 1\'s Name</string>
+    <string name="settings_player2">Default Player 2\'s Name</string>
+    <string name="settings_music">Music</string>
+    <string name="settings_sound">Sound</string>
+    <string name="settings_saved">Settings saved</string>
+    <string name="settings_not_saved">An error occurred trying to save settings</string>
+    <string name="settings_not_loaded">An error occurred trying to load your settings</string>
 </resources>

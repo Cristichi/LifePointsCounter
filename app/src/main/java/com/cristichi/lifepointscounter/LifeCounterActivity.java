@@ -2,6 +2,7 @@ package com.cristichi.lifepointscounter;
 
 import android.content.Context;
 import android.os.Handler;
+import android.os.Parcel;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -50,7 +51,7 @@ public class LifeCounterActivity extends AppCompatActivity {
 
         try{
             Bundle extras = getIntent().getExtras();
-            String strLP = extras.getString("LP");
+            String strLP = extras.getString("lp");
             int intLP = Integer.parseInt(strLP);
             String player1 = extras.getString("Player1");
             String player2 = extras.getString("Player2");
@@ -69,7 +70,8 @@ public class LifeCounterActivity extends AppCompatActivity {
             pbPlayer2.setProgress(intLP);
             LP1 = LP2 = intLP;
 
-            List<List<Integer>> buttons = Settings.buttons;
+            List<List<Integer>> buttons = Settings.current.buttons;
+
             //Buttons Player 1
             for (List<Integer> list : buttons){
                 LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.counter_buttons_column, null);

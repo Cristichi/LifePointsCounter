@@ -9,10 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LifeCounterActivity"
+        <activity
+            android:name=".SettingsActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/settings_title"></activity>
+        <activity
+            android:name=".LifeCounterActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.FullScreen">
-        </activity>
+            android:theme="@style/AppTheme.FullScreen"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
