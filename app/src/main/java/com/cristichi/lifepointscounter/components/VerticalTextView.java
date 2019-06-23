@@ -42,7 +42,6 @@ public class VerticalTextView extends AppCompatTextView{
             canvas.rotate(-90);
         }
 
-
         canvas.translate(getCompoundPaddingLeft(), getExtendedPaddingTop());
 
         getLayout().draw(canvas);

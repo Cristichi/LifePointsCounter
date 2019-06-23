@@ -18,22 +18,21 @@
             android:title="@string/menu_coin" />
     </group-->
 
-    <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/ic_menu_slideshow"
-        android:title="@string/menu_home" />
-
     <item android:title="@string/menu_section_utilities">
         <menu>
             <item
                 android:id="@+id/nav_coin"
-                android:icon="@drawable/ic_menu_slideshow"
+                android:icon="@drawable/side_nav_bar"
                 android:title="@string/menu_coin" />
         </menu>
     </item>
 
     <item android:title="@string/menu_section_preferences">
         <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="@string/menu_settings" />
             <item
                 android:id="@+id/nav_edit"
                 android:icon="@drawable/ic_menu_manage"

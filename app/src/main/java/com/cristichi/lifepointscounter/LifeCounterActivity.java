@@ -1,44 +1,52 @@
 package com.cristichi.lifepointscounter;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Handler;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.AnimationUtils;
-import android.view.animation.RotateAnimation;
-import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cristichi.lifepointscounter.components.VerticalTextView;
+import com.cristichi.lifepointscounter.obj.Settings;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 public class LifeCounterActivity extends AppCompatActivity {
 
-    private TextView tv1Player1;
-    private TextView tv2Player1;
-    private TextView tv1Player2;
-    private TextView tv2Player2;
-    private TextView tvLP1;
-    private TextView tvLP2;
-    private ProgressBar pbPlayer1;
-    private ProgressBar pbPlayer2;
+    protected int LP1;
+    protected int LP2;
+
+    protected TextView tvLP1;
+    protected TextView tvLP2;
+    protected ProgressBar pbPlayer1;
+    protected ProgressBar pbPlayer2;
+    protected LinearLayout llPlayer1;
+    protected LinearLayout llPlayer2;
 
     @SuppressWarnings("All")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_life_counter);
+        LayoutInflater inflater = (LayoutInflater) getBaseContext() .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        tv1Player1 = findViewById(R.id.tv1Player1);
-        tv2Player1 = findViewById(R.id.tv2Player1);
-        tv1Player2 = findViewById(R.id.tv1Player2);
-        tv2Player2 = findViewById(R.id.tv2Player2);
+        TextView tv1Player1 = findViewById(R.id.tv1Player1);
+        TextView tv2Player1 = findViewById(R.id.tv2Player1);
+        TextView tv1Player2 = findViewById(R.id.tv1Player2);
+        TextView tv2Player2 = findViewById(R.id.tv2Player2);
         tvLP1 = findViewById(R.id.tvLP1);
         tvLP2 = findViewById(R.id.tvLP2);
         pbPlayer1 = findViewById(R.id.progressBarPlayer1);
         pbPlayer2 = findViewById(R.id.progressBarPlayer2);
+        llPlayer1 = findViewById(R.id.llPlayer1);
+        llPlayer2 = findViewById(R.id.llPlayer2);
 
         try{
             Bundle extras = getIntent().getExtras();
@@ -59,41 +67,66 @@ public class LifeCounterActivity extends AppCompatActivity {
             pbPlayer2.setMax(intLP);
             pbPlayer1.setProgress(intLP);
             pbPlayer2.setProgress(intLP);
+            LP1 = LP2 = intLP;
+
+            List<List<Integer>> buttons = Settings.buttons;
+            //Buttons Player 1
+            for (List<Integer> list : buttons){
+                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.counter_buttons_column, null);
+                for (Integer integer : list){
+                    VerticalTextView tvButton = (VerticalTextView) inflater.inflate(R.layout.counter_buttons_button_270, null);
+                    tvButton.setTag(integer);
+                    tvButton.setText(String.valueOf(integer>0?"+"+integer:integer));
+                    tvButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            addLP1((Integer)v.getTag());
+                        }
+                    });
+                    linearLayout.addView(tvButton);
+                }
+                llPlayer1.addView(linearLayout);
+            }
+
+            //Buttons Player 2
+            Collections.reverse(buttons);
+            for (List<Integer> list : buttons){
+                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.counter_buttons_column, null);
+                for (Integer integer : list){
+                    VerticalTextView tvButton = (VerticalTextView) inflater.inflate(R.layout.counter_buttons_button_90, null);
+                    tvButton.setTag(integer);
+                    tvButton.setText(String.valueOf(integer > 0 ? "+" + integer : integer));
+                    tvButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            addLP2((Integer)v.getTag());
+                        }
+                    });
+                    linearLayout.addView(tvButton);
+                }
+                llPlayer2.addView(linearLayout);
+            }
+
         }catch (Exception e){
-            Log.e("CRISTICHIEX", "ERROR: "+e.toString());
-            Log.e("CRISTICHIEX", "ERROR: "+e.toString());
-            Log.e("CRISTICHIEX", "ERROR: "+e.toString());
             e.printStackTrace();
             finish();
         }
     }
 
     protected void addLP1(int adding){
-        int lp = pbPlayer1.getProgress()+adding;
-        pbPlayer1.setProgress(lp);
-        tvLP1.setText(String.valueOf(lp));
+        LP1 += adding;
+        if (LP1<0)
+            LP1=0;
+        pbPlayer1.setProgress(LP1);
+        tvLP1.setText(String.valueOf(LP1));
     }
 
     protected void addLP2(int adding){
-        int lp = pbPlayer2.getProgress()+adding;
-        pbPlayer2.setProgress(lp);
-        tvLP2.setText(String.valueOf(lp));
-    }
-
-    protected void subLP1(int substracting){
-        int lp = pbPlayer1.getProgress()-substracting;
-        if (lp<0)
-            lp=0;
-        pbPlayer1.setProgress(lp);
-        tvLP1.setText(String.valueOf(lp));
-    }
-
-    protected void subLP2(int substracting){
-        int lp = pbPlayer2.getProgress()-substracting;
-        if (lp<0)
-            lp=0;
-        pbPlayer2.setProgress(lp);
-        tvLP2.setText(String.valueOf(lp));
+        LP2 += adding;
+        if (LP2<0)
+            LP2=0;
+        pbPlayer2.setProgress(LP2);
+        tvLP2.setText(String.valueOf(LP2));
     }
 
     boolean doubleBackToExitPressedOnce = false;
