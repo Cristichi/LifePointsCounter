@@ -33,6 +33,8 @@ public class ButtonsEditorActivity extends AppCompatActivity {
     private RecyclerViewAdapter recyclerViewAdapter;
 
     private Button btnAddRow;
+    private ImageButton btnAddSet;
+    private ImageButton btnEditName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,8 @@ public class ButtonsEditorActivity extends AppCompatActivity {
 
         recyclerViewRows = findViewById(R.id.recyclerViewRows);
         btnAddRow = findViewById(R.id.btnAddRow);
+        btnAddSet = findViewById(R.id.btnAddSet);
+        btnEditName = findViewById(R.id.btnEditName);
 
         recyclerViewAdapter = new RecyclerViewAdapter();
 
@@ -53,6 +57,20 @@ public class ButtonsEditorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 recyclerViewAdapter.addNewRow();
+            }
+        });
+
+        btnAddSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        btnEditName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
