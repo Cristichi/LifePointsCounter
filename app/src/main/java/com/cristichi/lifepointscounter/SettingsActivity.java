@@ -57,6 +57,7 @@ public class SettingsActivity extends AppCompatActivity {
         Settings.current.soundVolume = ((float)(sbSound.getProgress())/10);
         Settings.current.musicVolume = ((float)(sbMusic.getProgress())/10);
 
+        /* *
         File dir = getFilesDir();
         File file = new File(dir, Settings.FILE);
 
@@ -69,5 +70,7 @@ public class SettingsActivity extends AppCompatActivity {
         }catch (IOException e){
             Toast.makeText(this, R.string.settings_not_saved, Toast.LENGTH_SHORT).show();
         }
+        /* */
+        Settings.current.writeToFile();
     }
 }

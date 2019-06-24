@@ -9,14 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ButtonsEditorActivity"
+            android:label="@string/buttons_title"/>
         <activity
             android:name=".SettingsActivity"
-            android:theme="@style/AppTheme"
-            android:label="@string/settings_title"></activity>
+            android:label="@string/settings_title"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".LifeCounterActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.FullScreen"></activity>
+            android:theme="@style/AppTheme.FullScreen" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

@@ -1,5 +1,6 @@
 package com.cristichi.lifepointscounter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,17 +16,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.cristichi.lifepointscounter.obj.Settings;
 
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public static Context context;
 
     private EditText etLP;
     private EditText etName1;
@@ -35,7 +32,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context = this;
 
+        /* *
         File dir = getFilesDir();
         File file = new File(dir, Settings.FILE);
 
@@ -50,6 +49,8 @@ public class MainActivity extends AppCompatActivity
             }catch (IOException e){
                 Toast.makeText(this, R.string.settings_not_saved, Toast.LENGTH_SHORT).show();
             }
+        /* */
+        Settings.current.readFromFile();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -147,8 +148,9 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_edit) {
-
+        if (id == R.id.nav_edit_buttons) {
+            Intent intent = new Intent(MainActivity.this, ButtonsEditorActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_settings) {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);

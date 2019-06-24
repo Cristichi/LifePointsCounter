@@ -2,9 +2,17 @@ package com.cristichi.lifepointscounter.obj;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.Toast;
+
+import com.cristichi.lifepointscounter.MainActivity;
+import com.cristichi.lifepointscounter.R;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -111,6 +119,42 @@ public class Settings implements Parcelable, Serializable {
             return new Settings[size];
         }
     };
+
+    public boolean writeToFile(){
+        File dir = MainActivity.context.getFilesDir();
+        File file = new File(dir, Settings.FILE);
+
+        try{
+            FileOutputStream os = new FileOutputStream(file);
+            DataOutputStream dos = new DataOutputStream(os);
+            Settings.current.write(dos);
+            dos.close();
+            Toast.makeText(MainActivity.context, R.string.settings_saved, Toast.LENGTH_SHORT).show();
+            return true;
+        }catch (IOException e){
+            Toast.makeText(MainActivity.context, R.string.settings_not_saved, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    public boolean readFromFile() {
+        File dir = MainActivity.context.getFilesDir();
+        File file = new File(dir, Settings.FILE);
+
+        if (file.exists())
+            try{
+                FileInputStream fis = new FileInputStream(file);
+                DataInputStream dis = new DataInputStream(fis);
+                if (!Settings.current.read(dis)){
+                    Toast.makeText(MainActivity.context, R.string.settings_not_saved, Toast.LENGTH_SHORT).show();
+                }
+                dis.close();
+                return true;
+            }catch (IOException e){
+                Toast.makeText(MainActivity.context, R.string.settings_not_saved, Toast.LENGTH_SHORT).show();
+            }
+        return false;
+    }
 
     public boolean write(DataOutputStream writer){
         try{

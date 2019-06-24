@@ -38,4 +38,10 @@
     <string name="settings_saved">Settings saved</string>
     <string name="settings_not_saved">An error occurred trying to save settings</string>
     <string name="settings_not_loaded">An error occurred trying to load your settings</string>
+
+    <string name="buttons_title">Button Sets</string>
+    <string name="buttons_add_row">New Row</string>
+    <string name="buttons_dialog_add_value">Add Button</string>
+    <string name="buttons_saved">Settings saved</string>
+    <string name="buttons_not_saved">An error ocurred trying to save changes</string>
 </resources>
